@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--application.yml 传递参数，不能使用logback 自带的<property>标签 -->
+    <springProperty scope="context" name="logger.path" source="cy.logger.path"/>
+    
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%-18thread] %-41logger{41}: %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- 文件输出 -->
+    <appender name="file"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logger.path}/TimeAttendance.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${logger.path}/TimeAttendance.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>180</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>10MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%-15thread] %-50logger{50}: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- root:用来指定最基础的日志输出级别，只有一个level属性 -->
+    <!-- TRACE < DEBUG < INFO < WARN < ERROR 从小到大，小的可以包含大的 -->
+    <root level="INFO">
+        <!--appender将会添加到这个loger-->
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+    
+    <!-- logger：用来设置某一个包或者具体的某一个类的日志打印级别、以及指定 -->
+    <!-- 让mapper包的日志等级是debug，这样Mybatis就能正常输出sql了 -->
+    <logger name="com.cy.mapper" level="DEBUG">
+        <appender-ref ref="console"/>
+    </logger>
+</configuration>

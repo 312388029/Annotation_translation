@@ -1,0 +1,18 @@
+# ===================================================================
+# Spring Boot配置.
+#
+# 本配置会被你将要使用的Spring profile覆盖，例如如果你使用"dev" profile，那么本文配置将被application-dev.yml中的配置覆盖。
+# ===================================================================
+
+# ===================================================================
+# 标准的Spring Boot属性.
+# 完整参考资料可在以下地址查阅:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+
+spring:
+    application:
+        name: Annotation_translation
+    profiles:
+        active: dev

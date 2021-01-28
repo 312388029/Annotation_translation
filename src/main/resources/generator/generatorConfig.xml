@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+<!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
+<generatorConfiguration>
+    <!-- 配置文件路径 -->
+    <properties resource="generator/mybatis-generator.properties"/>
+
+    <context id="genratorContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--<property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>-->
+
+        <!-- plugin -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.cy.domain"
+                            targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mappers"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.cy.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!-- <table tableName="store"></table>
+        <table tableName="store_personnel"></table>
+        <table tableName="store_price"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="store_stock"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="supplier"></table>
+        <table tableName="supplier_purchase_price"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="goods"></table>
+        <table tableName="goods_type"></table>
+        <table tableName="logistics"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="purchase"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="ordering_sheet"></table>
+        <table tableName="ordering_sub_sheet"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="delivery_sheet"></table>
+        <table tableName="delivery_sub_sheet"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="purchase_sheet"></table>
+        <table tableName="purchase_sub_sheet"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="amendment_sheet"></table>
+        <table tableName="amendment_sub_sheet"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="order_info"></table>
+        <table tableName="order_detail"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="order_pay"></table>
+        <table tableName="city"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="dictionary"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="dictionary_type"></table>
+        <table tableName="sequence"></table>
+        <table tableName="sys_user"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="sys_role"><generatedKey column="id" sqlStatement="JDBC"/></table>
+
+        <table tableName="sys_user_role"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="sys_role_menu"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="supplier_purchase"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="supplier_logistics"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="goods_supplier"><generatedKey column="id" sqlStatement="JDBC"/></table>
+        <table tableName="goods_type_join"><generatedKey column="id" sqlStatement="JDBC"/></table>
+
+        <table tableName="operation_log"><generatedKey column="id" sqlStatement="JDBC"/></table> -->
+
+        <!--        <table tableName="advert"></table>-->
+        <!--        <table tableName="attendance_personnel"></table>-->
+        <!--        <table tableName="attendance_rules"></table>-->
+        <!--        <table tableName="clock_in_record"></table>-->
+        <!--        <table tableName="grade_standard"></table>-->
+        <!--        <table tableName="personnel"></table>-->
+        <!--        <table tableName="personnel_appeal"></table>-->
+        <!--        <table tableName="personnel_grade"></table>-->
+        <!--        <table tableName="personnel_grade_detail"></table>-->
+        <!--        <table tableName="personnel_leave"></table>-->
+        <!--        <table tableName="personnel_shift_record"></table>-->
+        <!--        <table tableName="power"></table>-->
+        <!--        <table tableName="role"></table>-->
+        <!--        <table tableName="role_power"></table>-->
+        <!--        <table tableName="section"></table>-->
+        <!--        <table tableName="section_record"></table>-->
+        <!--        <table tableName="sequence"></table>-->
+        <!--        <table tableName="address_book"></table>-->
+        <!--        <table tableName="attendance_record"></table>-->
+        <!--        <table tableName="resource"></table>-->
+        <!--        <table tableName="holiday_personnel"></table>-->
+        <!--        <table tableName="holiday_rules"></table>-->
+
+    </context>
+
+</generatorConfiguration>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.mapper.SequenceMapper">
+  <resultMap id="BaseResultMap" type="com.cy.domain.Sequence">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="val" jdbcType="VARCHAR" property="val" />
+    <result column="use_for" jdbcType="VARCHAR" property="useFor" />
+  </resultMap>
+</mapper>
