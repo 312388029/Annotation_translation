@@ -16,6 +16,12 @@ import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.Map;
 
+
+/**
+ * @Description: 拦截注解翻译AOP
+ * @Author: cy
+ * @Date: 2021/1/27
+ */
 @Aspect
 @Component
 public class TranslateAspect {
@@ -52,7 +58,7 @@ public class TranslateAspect {
         //解析开始时间
         long start = System.currentTimeMillis();
         //开始解析
-        Object result = this.parsedictLabel(agrs[0], (Class) agrs[1]);
+        Object result = this.parseCodeToValue(agrs[0], (Class) agrs[1]);
         //解析结束时间
         long end = System.currentTimeMillis();
         logger.info("解析注入JSON数据耗时：" + (end - start) + "ms");
@@ -61,7 +67,7 @@ public class TranslateAspect {
     }
 
 
-    private Object parsedictLabel(Object result, Class objClass) throws NoSuchFieldException, IllegalAccessException, ParseException {
+    private Object parseCodeToValue(Object result, Class objClass) throws NoSuchFieldException, IllegalAccessException, ParseException {
         if (result != null) {
             //将Object类型强转
             try {
@@ -99,7 +105,7 @@ public class TranslateAspect {
                     field.setAccessible(true);
                     String key = field.get(result).toString();
                     //翻译字典值对应的text值
-                    Object resultValue = translateDictValue(tabName, code, value, key);
+                    Object resultValue = translateCode2Value(tabName, code, value, key);
                     logger.debug("翻译表名：" + tabName + " 目标code：" + code + " key值：" + key + " 目标字段： " + value + " 翻译结果：" + resultValue.toString());
                     targetField.set(result, resultValue);
                 }
@@ -117,7 +123,7 @@ public class TranslateAspect {
      * @param key     值
      * @return
      */
-    private Object translateDictValue(String tabName, String code, String value, String key) {
+    private Object translateCode2Value(String tabName, String code, String value, String key) {
         //如果key为空直接返回就好了
         if (isEmpty(tabName) || isEmpty(code) || isEmpty(value) || isEmpty(key)) {
             return null;
